@@ -76,6 +76,14 @@ body {
   height: 90px; /* Add fixed height */
 }
 
+/* Hamburger menu icon */
+.hamburger-menu {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+}
+
 
 .header-list {
   display: flex;
@@ -566,7 +574,7 @@ span {
 }
 
 /* Small screens (768px and down) */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   #header {
     padding: 20px;
     position: static;
@@ -660,10 +668,68 @@ span {
     margin-bottom: 30px;
     text-align: center;
   }
+} */
+
+@media screen and (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  #header {
+    padding: 20px;
+    position: relative;
+  }
+
+  .header-list {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #e3e6f3;
+    padding: 20px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  }
+
+  .header-list.active {
+    display: block;
+  }
+
+  .header-list-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-list-nav ul li {
+    padding: 15px 0;
+  }
+
+  .header-list-icon {
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  /* Adjust header logo position */
+  .header-logo {
+    margin-bottom: 0;
+  }
+
+  #banners .small-banners div {
+    min-width: 100%;
+    margin: 10px 0;
+  }
 }
 
 /* Extra small screens (480px and down) */
 @media screen and (max-width: 480px) {
+
+  .hamburger-menu {
+    right: 15px;
+    top: 15px;
+  }
 
   #header {
     padding: 15px;
