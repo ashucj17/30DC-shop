@@ -1,48 +1,28 @@
-// focus the cursor on the email-address input
-const emailField = document.getElementById("email-address-input");
-emailField.focus({
-  preventScroll: true,
+// Script for navigation sidebar toggling
+const mobileMenu = document.getElementById('mobile-menu');
+const headerList = document.querySelector('.header-list');
+const body = document.body;
+
+// Toggle menu when hamburger icon is clicked
+mobileMenu.addEventListener('click', () => {
+  headerList.classList.toggle('active');
+  body.classList.toggle('menu-active');
 });
 
-
-// Add this to your script.js file
-
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  const headerList = document.querySelector('.header-list');
-  
-  mobileMenu.addEventListener('click', function() {
-      headerList.classList.toggle('active');
-      
-      // Toggle hamburger icon between bars and X
-      const icon = this.querySelector('i');
-      if (icon.classList.contains('fa-bars')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-xmark');
-      } else {
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-      }
+// Close menu when a menu item is clicked
+const navLinks = document.querySelectorAll('.header-list-nav ul li a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    headerList.classList.remove('active');
+    body.classList.remove('menu-active');
   });
+});
 
-  // Close menu when clicking outside
-  document.addEventListener('click', function(event) {
-      if (!headerList.contains(event.target) && !mobileMenu.contains(event.target)) {
-          headerList.classList.remove('active');
-          const icon = mobileMenu.querySelector('i');
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-      }
-  });
-
-  // Close menu when clicking a link
-  const navLinks = document.querySelectorAll('.header-list-nav ul li a');
-  navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-          headerList.classList.remove('active');
-          const icon = mobileMenu.querySelector('i');
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-      });
-  });
+// Close menu when clicking outside the menu
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.header-list') && 
+      !event.target.closest('.hamburger-menu')) {
+    headerList.classList.remove('active');
+    body.classList.remove('menu-active');
+  }
 });
